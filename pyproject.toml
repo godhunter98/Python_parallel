@@ -1,0 +1,11 @@
+[project]
+name = "py-concurrency-lab"
+version = "0.1.0"
+description = "Learn concurrency and async programming in Python step-by-step."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiohttp>=3.13.2",
+    "requests>=2.32.5",
+    "tqdm>=4.67.1",
+]

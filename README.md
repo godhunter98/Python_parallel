@@ -1,32 +1,35 @@
 # Py Concurrency Lab
 
-A hands-on path from “one slow loop” to multiprocessing pipelines. These are the exact exercises I used to understand Python concurrency; now you can follow the same sequence (or teach it on YouTube).
+A hands-on path from “one slow loop” to multiprocessing pipelines. These are the exact exercises I used to understand Python concurrency; now you can follow the same sequence.
 
 ## Prerequisites
 
 - Python 3.12+
-- `pip` (or [astral-sh/uv](https://github.com/astral-sh/uv) if you prefer a faster installer)
-- Optional: `python -m pip install pipx` if you want isolated tool installs
+- [uv](https://github.com/astral-sh/uv) (my go-to for creating envs and syncing deps)
+- Optional: `pipx install uv` if you want a one-line uv install
 
 Install dependencies once:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
-pip install -r requirements.txt  # or `pip install -e .` to use pyproject.toml
+uv venv                # creates .venv/ in the project
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+uv sync                # reads pyproject.toml / uv.lock and installs everything
 ```
 
-(If you use `uv`, swap the last line for `uv pip install -r requirements.txt`.)
+Need BeautifulSoup for the final pipeline? Add it with:
+
+```bash
+uv add beautifulsoup4
+```
 
 ## Repo Layout
 
 - `basics/` – bite-sized scripts that answer “what changes when I add threads or processes?”
 - `lab/` – fuller demos that combine networking, CPU work, locks, async, and multiprocessing
-- `main.py` – intentionally empty; leave it for your own experiments or live-coding
 
 Each script is isolated so you can run it, show the output, and reset the terminal before the next clip.
 
-## Suggested Teaching Flow
+## Suggested Learning Flow
 
 1. **Baseline intuition (basics/)**
    - `0_sequential.py`: one process, lots of waiting. Perfect “before” benchmark.
@@ -54,11 +57,10 @@ Each script is isolated so you can run it, show the output, and reset the termin
 ## How to Run a Demo
 
 ```bash
-source .venv/bin/activate
-python basics/1_multiprocess.py
-python lab/02_threaded_fetch.py
-python lab/07_lock_fixed_demo.py
-python lab/10_async_multiprocessing_pipeline.py
+uv run python basics/1_multiprocess.py
+uv run python lab/02_threaded_fetch.py
+uv run python lab/07_lock_fixed_demo.py
+uv run python lab/10_async_multiprocessing_pipeline.py
 ```
 
 When recording, keep one script per segment; reset the terminal clock so viewers can see the time difference each time.
@@ -79,4 +81,4 @@ When recording, keep one script per segment; reset the terminal clock so viewers
 
 ---
 
-Copy this Markdown into `README.md` and you’re ready to go. Natural next step: record your first video chapter while the commands are fresh.
+You’re ready to roll camera—sync once with `uv`, then `uv run` each segment while you narrate the speedups.
